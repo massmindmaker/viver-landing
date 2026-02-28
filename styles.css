@@ -197,25 +197,36 @@ img { max-width: 100%; display: block; }
   font-family: 'Playfair Display', serif;
   font-size: 1.5rem;
   font-weight: 900;
+  gap: 2px;
+}
+.header__logo-text {
+  display: flex;
+  flex-direction: row;
+  align-items: baseline;
+  white-space: nowrap;
+  line-height: 1;
 }
 .header__logo small {
   font-family: 'Inter', sans-serif;
-  font-size: .65rem;
-  font-weight: 500;
-  letter-spacing: .08em;
-  color: var(--text-light);
+  font-size: .62rem;
+  font-weight: 600;
+  letter-spacing: .1em;
   text-transform: uppercase;
+  color: var(--text-light);
 }
 
-.logo-vi  { color: var(--brown); }
-.logo-dash{ color: var(--text-light); }
-.logo-ver { color: var(--orange); }
+/* Logo colours — transparent header (on hero) */
+.logo-vi   { color: var(--white); }
+.logo-dash { color: rgba(255,255,255,.55); }
+.logo-ver  { color: var(--orange); }
 
-.header.scrolled .header__logo small { color: var(--text-light); }
-.header:not(.scrolled) .header__logo .logo-vi  { color: var(--white); }
-.header:not(.scrolled) .header__logo .logo-dash { color: rgba(255,255,255,.5); }
-.header:not(.scrolled) .header__logo .logo-ver { color: var(--orange-light); }
 .header:not(.scrolled) .header__logo small { color: rgba(255,255,255,.6); }
+
+/* Logo colours — scrolled header */
+.header.scrolled .logo-vi   { color: var(--brown); }
+.header.scrolled .logo-dash { color: var(--text-light); }
+.header.scrolled .logo-ver  { color: var(--orange); }
+.header.scrolled .header__logo small { color: var(--text-light); }
 
 .header__nav {
   display: flex;
@@ -299,11 +310,11 @@ img { max-width: 100%; display: block; }
   backdrop-filter: blur(2px);
 }
 
-.food-circle--1 { top: 12%; right: 18%; animation-delay: 0s;    width: 110px; height: 110px; font-size: 3rem; }
-.food-circle--2 { top: 55%; right:  8%; animation-delay: 0.8s;  width:  75px; height:  75px; font-size: 2rem; }
-.food-circle--3 { top: 25%; right: 38%; animation-delay: 1.5s;  }
-.food-circle--4 { top: 70%; right: 28%; animation-delay: 0.4s;  width:  80px; height:  80px; font-size: 2.1rem; }
-.food-circle--5 { top: 40%; right: 52%; animation-delay: 2s;    width:  65px; height:  65px; font-size: 1.8rem; opacity: .6; }
+/* Все плавающие элементы — только в правой трети, не пересекают текст */
+.food-circle--1 { top: 10%; right: 8%;  animation-delay: 0s;   width: 105px; height: 105px; font-size: 2.8rem; }
+.food-circle--2 { top: 52%; right: 4%;  animation-delay: 0.8s; width:  72px; height:  72px; font-size: 1.9rem; }
+.food-circle--3 { top: 28%; right: 22%; animation-delay: 1.5s; width:  88px; height:  88px; font-size: 2.2rem; }
+.food-circle--4 { top: 72%; right: 15%; animation-delay: 0.4s; width:  76px; height:  76px; font-size: 2rem; }
 
 .hero__content {
   position: relative;
@@ -336,9 +347,10 @@ img { max-width: 100%; display: block; }
   margin-bottom: 4px;
 }
 
+/* Hero title — точные цвета как на постере */
 .title-vi   { color: var(--white); }
-.title-dash { color: rgba(255,255,255,.4); }
-.title-ver  { color: var(--orange-light); }
+.title-dash { color: rgba(255,255,255,.5); }
+.title-ver  { color: var(--orange); }
 
 .hero__subtitle {
   font-family: 'Playfair Display', serif;
@@ -1014,58 +1026,81 @@ img { max-width: 100%; display: block; }
   transform: translateY(-2px);
 }
 
-.map-placeholder {
-  background: var(--white);
+/* ── Yandex Map ── */
+.map-wrapper {
+  position: relative;
   border-radius: var(--radius);
   overflow: hidden;
   box-shadow: var(--shadow-lg);
-  min-height: 340px;
+  border: 3px solid var(--beige-dark);
+}
+
+.yandex-map {
+  display: block;
+  width: 100%;
+  height: 380px;
+  border: none;
+  /* Sepia-brown filter to match warm design */
+  filter: sepia(30%) saturate(80%) hue-rotate(-5deg) brightness(0.92) contrast(1.05);
+}
+
+/* Top badge overlay on the map */
+.map-frame-overlay {
+  position: absolute;
+  top: 14px;
+  left: 14px;
+  z-index: 10;
+  pointer-events: none;
+}
+
+.map-frame-badge {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  background: rgba(61,31,10,.92);
+  backdrop-filter: blur(8px);
+  color: var(--white);
+  padding: 10px 16px;
+  border-radius: var(--radius-sm);
+  box-shadow: 0 4px 16px rgba(0,0,0,.3);
+  border: 1px solid rgba(255,255,255,.1);
+}
+
+.map-frame-pin { font-size: 1.4rem; }
+
+.map-frame-badge strong {
+  display: block;
+  font-family: 'Playfair Display', serif;
+  font-size: .95rem;
+  font-weight: 700;
+  color: var(--white);
+}
+
+.map-frame-badge span {
+  font-size: .72rem;
+  color: rgba(255,255,255,.65);
+}
+
+/* Open button below map */
+.map-open-btn {
   display: flex;
   align-items: center;
   justify-content: center;
-  background: linear-gradient(135deg, #E8DCC8 0%, #D4C4A8 50%, #C8B898 100%);
-  position: relative;
-}
-
-.map-placeholder::before {
-  content: '';
-  position: absolute;
-  inset: 0;
-  background-image:
-    linear-gradient(rgba(200,180,140,.3) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(200,180,140,.3) 1px, transparent 1px);
-  background-size: 40px 40px;
-}
-
-.map-placeholder__inner {
-  position: relative;
-  z-index: 1;
-  text-align: center;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
   gap: 8px;
-  background: rgba(255,255,255,.92);
-  padding: 28px 36px;
-  border-radius: var(--radius);
-  box-shadow: var(--shadow);
+  width: 100%;
+  padding: 13px 20px;
+  background: var(--brown);
+  color: var(--white);
+  font-size: .88rem;
+  font-weight: 600;
+  border-top: 2px solid rgba(255,255,255,.08);
+  transition: background .2s;
 }
 
-.map-pin { font-size: 2.5rem; }
-
-.map-placeholder__inner strong {
-  font-family: 'Playfair Display', serif;
-  font-size: 1.2rem;
-  color: var(--brown);
+.map-open-btn:hover {
+  background: var(--brown-mid);
+  color: var(--orange-light);
 }
-
-.map-placeholder__inner span {
-  font-size: .85rem;
-  color: var(--text-mid);
-  margin-bottom: 8px;
-}
-
-.map-btn { margin-top: 6px; }
 
 /* ── Footer ── */
 .footer {
@@ -1089,11 +1124,18 @@ img { max-width: 100%; display: block; }
   font-weight: 900;
   color: var(--white);
   line-height: 1.1;
+  gap: 2px;
+}
+.footer__logo-text {
+  display: flex;
+  flex-direction: row;
+  align-items: baseline;
+  white-space: nowrap;
 }
 .footer__logo small {
   font-family: 'Inter', sans-serif;
   font-size: .6rem;
-  font-weight: 500;
+  font-weight: 600;
   letter-spacing: .1em;
   text-transform: uppercase;
   color: rgba(255,255,255,.5);
