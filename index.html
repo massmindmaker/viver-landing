@@ -2,7 +2,10 @@
 <html lang="ru">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+  <meta name="mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
   <meta name="description" content="Ви-Вер — кафе-кулинария на Электролитном проезде. Завтраки, бизнес-ланчи, выпечка, кофе с собой. Заказывайте через Telegram!" />
   <meta name="theme-color" content="#3D1F0A" />
   <title>Ви-Вер — кафе-кулинария</title>
@@ -585,6 +588,7 @@
       </div>
       <div class="contacts__map animate-on-scroll">
         <div class="map-wrapper">
+          <!-- Badge overlay -->
           <div class="map-frame-overlay">
             <div class="map-frame-badge">
               <span class="map-frame-pin">📍</span>
@@ -594,19 +598,49 @@
               </div>
             </div>
           </div>
+
+          <!-- Dashed route SVG overlay (decorative, top-right corner) -->
+          <div class="map-route-overlay" aria-hidden="true">
+            <svg class="map-route-svg" viewBox="0 0 220 200" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <!-- Metro/start icon -->
+              <circle cx="30" cy="30" r="14" fill="#E85520" opacity="0.92"/>
+              <text x="30" y="35" text-anchor="middle" font-size="13" fill="white">М</text>
+              <!-- Dashed path from metro to café -->
+              <path
+                d="M 30 44 C 30 80 60 80 80 100 C 100 120 120 130 150 148"
+                stroke="#E85520"
+                stroke-width="2.5"
+                stroke-dasharray="6 5"
+                stroke-linecap="round"
+                opacity="0.85"
+              />
+              <!-- Café pin -->
+              <circle cx="150" cy="148" r="10" fill="#3D1F0A" stroke="#E85520" stroke-width="2.5" opacity="0.95"/>
+              <circle cx="150" cy="148" r="4" fill="#E85520"/>
+              <!-- Distance label -->
+              <rect x="62" y="102" width="68" height="20" rx="6" fill="rgba(61,31,10,0.82)"/>
+              <text x="96" y="116" text-anchor="middle" font-size="9.5" fill="white" font-family="Inter,sans-serif" font-weight="600">~8 мин пешком</text>
+              <!-- Start label -->
+              <rect x="42" y="10" width="44" height="16" rx="4" fill="rgba(61,31,10,0.75)"/>
+              <text x="64" y="21" text-anchor="middle" font-size="8.5" fill="white" font-family="Inter,sans-serif">Серпуховская</text>
+            </svg>
+          </div>
+
+          <!-- Real Yandex iframe: Электролитный проезд 16к7, coords 55.669650,37.611491 -->
           <iframe
             class="yandex-map"
-            src="https://yandex.ru/map-widget/v1/?ll=37.631600%2C55.694900&z=16&pt=37.631600%2C55.694900%2Cpm2rdm&l=map&theme=dark"
+            src="https://yandex.ru/map-widget/v1/?ll=37.611491%2C55.669650&z=16&pt=37.611491%2C55.669650%2Cpm2rdm&l=map"
             width="100%"
             height="380"
             frameborder="0"
             allowfullscreen
             loading="lazy"
-            title="Ви-Вер на карте"
+            title="Ви-Вер на карте — Электролитный проезд 16к7"
           ></iframe>
-          <a href="https://yandex.ru/maps/?pt=37.631600,55.694900&z=16&l=map" target="_blank" rel="noopener" class="map-open-btn">
+
+          <a href="https://yandex.ru/maps/213/moscow/?pt=37.611491,55.669650&z=16&l=map" target="_blank" rel="noopener" class="map-open-btn">
             <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M19 19H5V5h7V3H5a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7h-2v7zM14 3v2h3.59l-9.83 9.83 1.41 1.41L19 6.41V10h2V3h-7z"/></svg>
-            Открыть в Яндекс.Картах
+            Построить маршрут в Яндекс.Картах
           </a>
         </div>
       </div>

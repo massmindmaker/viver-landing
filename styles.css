@@ -26,7 +26,11 @@
   --tg-blue:    #2AABEE;
 }
 
-html { scroll-behavior: smooth; }
+html {
+  scroll-behavior: smooth;
+  -webkit-text-size-adjust: 100%;
+  text-size-adjust: 100%;
+}
 
 body {
   font-family: 'Inter', system-ui, sans-serif;
@@ -34,7 +38,13 @@ body {
   color: var(--text);
   line-height: 1.6;
   overflow-x: hidden;
+  /* Safe area for notched iPhones */
+  padding-left: env(safe-area-inset-left);
+  padding-right: env(safe-area-inset-right);
 }
+
+/* Smooth momentum scroll on iOS */
+* { -webkit-overflow-scrolling: touch; }
 
 .container {
   max-width: 1160px;
@@ -1081,6 +1091,22 @@ img { max-width: 100%; display: block; }
   color: rgba(255,255,255,.65);
 }
 
+/* Route SVG overlay — top-right corner */
+.map-route-overlay {
+  position: absolute;
+  top: 14px;
+  right: 14px;
+  z-index: 10;
+  pointer-events: none;
+  width: 140px;
+  filter: drop-shadow(0 2px 8px rgba(0,0,0,.35));
+}
+
+.map-route-svg {
+  width: 100%;
+  height: auto;
+}
+
 /* Open button below map */
 .map-open-btn {
   display: flex;
@@ -1187,58 +1213,274 @@ img { max-width: 100%; display: block; }
   box-shadow: 0 8px 30px rgba(42,171,238,.6);
 }
 
-/* ════════════ RESPONSIVE ════════════ */
+/* ════════════════════════════════════════
+   RESPONSIVE — Mobile-first Professional
+   Breakpoints: 1200 / 1024 / 768 / 600 / 480 / 360
+   ════════════════════════════════════════ */
 
-@media (max-width: 1024px) {
-  .menu-grid     { grid-template-columns: repeat(2, 1fr); }
-  .reviews__grid { grid-template-columns: repeat(2, 1fr); }
-  .features__grid { grid-template-columns: repeat(2, 1fr); }
-  .feature-card + .feature-card:nth-child(3) { border-left: none; }
-  .about__inner  { gap: 48px; }
-  .tg-cta__inner { gap: 48px; }
+/* ── 1200px — Large tablets / small laptops ── */
+@media (max-width: 1200px) {
+  .container { padding: 0 20px; }
+  .about__inner  { gap: 52px; }
+  .tg-cta__inner { gap: 52px; }
+  .contacts__inner { gap: 52px; }
 }
 
+/* ── 1024px — Tablets landscape ── */
+@media (max-width: 1024px) {
+  .menu-grid      { grid-template-columns: repeat(2, 1fr); gap: 18px; }
+  .reviews__grid  { grid-template-columns: repeat(2, 1fr); gap: 18px; }
+  .features__grid { grid-template-columns: repeat(2, 1fr); }
+  .feature-card:nth-child(3) { border-left: none; }
+
+  .about__inner   { gap: 40px; }
+  .tg-cta__inner  { gap: 40px; }
+
+  .hero__title { font-size: clamp(3rem, 8vw, 5.5rem); }
+
+  /* Food circles tighter on tablet */
+  .food-circle--1 { width: 88px; height: 88px; font-size: 2.4rem; }
+  .food-circle--3 { width: 72px; height: 72px; font-size: 1.8rem; }
+}
+
+/* ── 768px — Tablets portrait / large phones ── */
 @media (max-width: 768px) {
+  /* Header */
+  .header { padding: 12px 0; }
   .header__nav { display: none; }
   .header__cta { display: none; }
   .burger { display: flex; }
 
-  /* Mobile nav overlay */
+  /* Mobile nav fullscreen overlay */
   .header__nav.open {
     display: flex;
     flex-direction: column;
     position: fixed;
     inset: 0;
     background: rgba(61,31,10,.97);
+    backdrop-filter: blur(8px);
     align-items: center;
     justify-content: center;
-    gap: 32px;
-    font-size: 1.4rem;
+    gap: 36px;
+    font-size: 1.5rem;
     z-index: 99;
   }
-  .header__nav.open a { color: var(--white); opacity: 1; }
+  .header__nav.open a {
+    color: var(--white);
+    opacity: 1;
+    padding: 8px 0;
+    border-bottom: 1px solid rgba(255,255,255,.1);
+    width: 200px;
+    text-align: center;
+  }
+  .header__nav.open a:last-child { border-bottom: none; }
 
-  .features__grid { grid-template-columns: repeat(2, 1fr); }
-  .menu-grid     { grid-template-columns: 1fr; }
-  .reviews__grid { grid-template-columns: 1fr; }
-  .about__inner  { grid-template-columns: 1fr; gap: 40px; }
-  .tg-cta__inner { grid-template-columns: 1fr; gap: 48px; }
+  /* Hero */
+  .hero__content {
+    padding: 100px 20px 64px;
+    max-width: 100%;
+  }
+  .hero__title { font-size: clamp(2.8rem, 12vw, 4.5rem); }
+  .hero__desc  { font-size: .96rem; }
+  .hero__actions { gap: 12px; }
+
+  /* Hide food circles on tablet — leave space for content */
+  .food-circle--3,
+  .food-circle--4 { display: none; }
+  .food-circle--1 { top: 8%;  right: 4%; width: 80px; height: 80px; font-size: 2rem; }
+  .food-circle--2 { top: 60%; right: 3%; width: 64px; height: 64px; font-size: 1.6rem; }
+
+  /* Features */
+  .features { padding: 0; }
+  .features__grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 0;
+  }
+  .feature-card { padding: 18px 16px; }
+  .feature-card:nth-child(3) { border-left: 1px solid rgba(255,255,255,.12); }
+  .feature-card:nth-child(3),
+  .feature-card:nth-child(4) { border-top: 1px solid rgba(255,255,255,.12); }
+
+  /* Menu */
+  .menu-section { padding: 64px 0; }
+  .menu-grid  { grid-template-columns: 1fr; gap: 16px; }
+  .menu-categories { gap: 8px; }
+  .menu-tab { padding: 8px 16px; font-size: .82rem; }
+
+  /* About */
+  .about { padding: 64px 0; }
+  .about__inner { grid-template-columns: 1fr; gap: 40px; }
+  .about__food-display { padding: 28px; }
+  .about__food-big { font-size: 4rem; }
+  .about__food-row { font-size: 2.2rem; gap: 14px; }
+  .about__badge-float { right: 8px; bottom: -16px; width: 88px; height: 88px; }
+  .about__badge-num { font-size: 1.4rem; }
+  .about__badge-text { font-size: .6rem; }
+
+  /* Telegram CTA */
+  .tg-cta { padding: 64px 0; }
+  .tg-cta__inner { grid-template-columns: 1fr; gap: 0; }
   .tg-cta__phone { display: none; }
-  .contacts__inner { grid-template-columns: 1fr; gap: 40px; }
+  .tg-cta__text h2 { font-size: clamp(1.6rem, 5vw, 2.2rem); }
 
-  .footer__inner { flex-direction: column; text-align: center; }
+  /* Reviews */
+  .reviews { padding: 64px 0; }
+  .reviews__grid { grid-template-columns: 1fr; gap: 16px; }
+
+  /* Contacts */
+  .contacts { padding: 64px 0; }
+  .contacts__inner { grid-template-columns: 1fr; gap: 36px; }
+
+  /* Map */
+  .yandex-map { height: 300px; }
+
+  /* Footer */
+  .footer__inner {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    gap: 20px;
+  }
   .footer__copy  { margin-left: 0; text-align: center; }
   .footer__links { justify-content: center; }
 
-  .hero__content { padding: 100px 24px 60px; }
-
-  .about__badge-float { right: 10px; bottom: -10px; width: 90px; height: 90px; }
-  .about__badge-num { font-size: 1.4rem; }
+  /* FAB smaller */
+  .fab-tg { width: 52px; height: 52px; bottom: 20px; right: 16px; }
 }
 
-@media (max-width: 480px) {
+/* ── 600px — Phones landscape / large phones ── */
+@media (max-width: 600px) {
+  .container { padding: 0 16px; }
+
+  .section-title { font-size: clamp(1.5rem, 6vw, 2rem); }
+
+  /* Hero */
+  .hero__content { padding: 90px 16px 56px; }
+  .hero__title   { font-size: clamp(2.6rem, 13vw, 3.8rem); }
+  .hero__badge   { font-size: .72rem; padding: 5px 13px; }
+  .hero__subtitle { font-size: .95rem; }
+  .hero__desc    { font-size: .9rem; margin-bottom: 28px; }
+  .hero__actions { flex-direction: column; align-items: flex-start; gap: 10px; }
+  .hero__actions .btn { width: 100%; justify-content: center; }
+  .hero__scroll-hint { display: none; }
+
+  /* Food circles — only one on small phones */
+  .food-circle--2 { display: none; }
+  .food-circle--1 { top: 10%; right: 3%; width: 68px; height: 68px; font-size: 1.7rem; }
+
+  /* Features — 1 column */
   .features__grid { grid-template-columns: 1fr; }
-  .feature-card + .feature-card { border-left: none; border-top: 1px solid rgba(255,255,255,.12); }
-  .hero__actions  { flex-direction: column; }
-  .hero__actions .btn { justify-content: center; }
+  .feature-card { border-left: none !important; border-top: 1px solid rgba(255,255,255,.12); }
+  .feature-card:first-child { border-top: none; }
+  .feature-card:nth-child(3) { border-left: none !important; }
+
+  /* Menu cards */
+  .menu-card__emoji { height: 100px; font-size: 3rem; }
+
+  /* Reviews */
+  .review-card { padding: 20px; }
+  .review-card blockquote { font-size: .86rem; }
+
+  /* About */
+  .about__values { gap: 12px; }
+  .about__value  { padding: 12px 14px; }
+
+  /* TG CTA */
+  .tg-cta__perks { gap: 8px; }
+  .tg-cta__perks li { font-size: .88rem; }
+
+  /* Contacts */
+  .contacts__social { flex-wrap: wrap; }
+  .social-btn { flex: 1; justify-content: center; min-width: 120px; }
+
+  /* Map */
+  .yandex-map { height: 260px; }
+  .map-frame-badge { padding: 8px 12px; }
+  .map-frame-badge strong { font-size: .82rem; }
+  .map-frame-badge span   { font-size: .66rem; }
+
+  /* Footer */
+  .footer__links { gap: 16px; font-size: .82rem; }
+  .footer__copy  { font-size: .75rem; }
+}
+
+/* ── 480px — Standard phones ── */
+@media (max-width: 480px) {
+  :root { --radius: 12px; --radius-sm: 8px; }
+
+  .btn--lg  { padding: 13px 24px; font-size: .95rem; }
+  .btn--sm  { padding: 8px 16px;  font-size: .82rem; }
+
+  .header__logo { font-size: 1.25rem; }
+
+  .hero__title { font-size: clamp(2.4rem, 14vw, 3.2rem); }
+  .hero__content { padding: 84px 16px 48px; }
+
+  .menu-section { padding: 48px 0; }
+  .about        { padding: 48px 0; }
+  .tg-cta       { padding: 48px 0; }
+  .reviews      { padding: 48px 0; }
+  .contacts     { padding: 48px 0; }
+
+  .section-header { margin-bottom: 32px; }
+
+  /* Stacked menu card — horizontal on small phone */
+  .menu-card { flex-direction: row; align-items: stretch; }
+  .menu-card__emoji {
+    width: 90px; height: auto; min-height: 90px;
+    font-size: 2.4rem;
+    flex-shrink: 0;
+    border-radius: var(--radius) 0 0 var(--radius);
+  }
+  .menu-card__body { padding: 14px; }
+  .menu-card__body h3 { font-size: .95rem; }
+  .menu-card__body p  { font-size: .78rem; -webkit-line-clamp: 2; display: -webkit-box; -webkit-box-orient: vertical; overflow: hidden; }
+
+  /* Phone mockup hidden on all small screens */
+  .tg-cta__phone { display: none; }
+
+  .about__food-row { gap: 10px; font-size: 1.8rem; }
+  .about__food-big { font-size: 3rem; }
+
+  .reviews__rating { flex-direction: column; gap: 4px; }
+}
+
+/* ── 360px — Smallest phones (Galaxy S, etc.) ── */
+@media (max-width: 360px) {
+  .container { padding: 0 12px; }
+
+  .hero__title   { font-size: clamp(2rem, 15vw, 2.8rem); }
+  .hero__content { padding: 80px 12px 40px; }
+
+  .header__logo  { font-size: 1.1rem; }
+
+  .menu-card__emoji { width: 76px; }
+
+  .btn--lg { padding: 12px 20px; font-size: .88rem; }
+
+  .feature-card__icon { font-size: 1.6rem; }
+  .feature-card strong { font-size: .85rem; }
+  .feature-card span   { font-size: .75rem; }
+
+  .yandex-map { height: 220px; }
+  .map-open-btn { font-size: .8rem; padding: 11px 14px; }
+}
+
+/* ── Touch / pointer improvements ── */
+@media (hover: none) and (pointer: coarse) {
+  /* Larger tap targets on touch devices */
+  .btn        { min-height: 48px; }
+  .menu-tab   { min-height: 44px; }
+  .nav a      { min-height: 48px; display: flex; align-items: center; }
+  .social-btn { min-height: 48px; }
+
+  /* Disable hover effects that feel wrong on touch */
+  .menu-card:hover,
+  .review-card:hover { transform: none; box-shadow: var(--shadow); }
+
+  .btn--primary:hover { transform: none; }
+  .btn--white:hover   { transform: none; }
+
+  /* FAB always visible on touch (no hover to reveal) */
+  .fab-tg { opacity: 1; transform: scale(1); }
 }
