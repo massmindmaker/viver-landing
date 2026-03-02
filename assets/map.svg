@@ -1,0 +1,215 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 520" font-family="Inter,system-ui,sans-serif">
+  <defs>
+    <!-- Background gradient — тёплый бежевый как у карты -->
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#EDE0C4"/>
+      <stop offset="100%" stop-color="#D9C9A8"/>
+    </linearGradient>
+    <!-- Green zone -->
+    <pattern id="grass" patternUnits="userSpaceOnUse" width="8" height="8">
+      <rect width="8" height="8" fill="#C8D8A0"/>
+    </pattern>
+    <!-- Дорога dash -->
+    <marker id="arrow-orange" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto">
+      <path d="M0,0 L0,6 L8,3 z" fill="#E85520"/>
+    </marker>
+    <marker id="arrow-orange2" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto">
+      <path d="M0,0 L0,6 L8,3 z" fill="#E85520"/>
+    </marker>
+    <filter id="shadow" x="-10%" y="-10%" width="120%" height="120%">
+      <feDropShadow dx="0" dy="2" stdDeviation="3" flood-color="rgba(61,31,10,0.25)"/>
+    </filter>
+    <filter id="shadow-sm">
+      <feDropShadow dx="0" dy="1" stdDeviation="2" flood-color="rgba(0,0,0,0.2)"/>
+    </filter>
+  </defs>
+
+  <!-- ═══ BACKGROUND ═══ -->
+  <rect width="600" height="520" fill="url(#bg)" rx="16"/>
+
+  <!-- ═══ ЗЕЛЁНЫЕ ЗОНЫ / ПАРК ═══ -->
+  <!-- Парк слева (ЖК Вершинино / сквер) -->
+  <ellipse cx="110" cy="260" rx="80" ry="110" fill="#BDD490" opacity="0.6"/>
+  <ellipse cx="95"  cy="220" rx="55" ry="70"  fill="#C8D8A0" opacity="0.7"/>
+  <!-- Деревья декоративные -->
+  <circle cx="80"  cy="200" r="12" fill="#8FAF50" opacity="0.5"/>
+  <circle cx="115" cy="240" r="10" fill="#8FAF50" opacity="0.5"/>
+  <circle cx="75"  cy="280" r="14" fill="#8FAF50" opacity="0.45"/>
+  <circle cx="125" cy="300" r="9"  fill="#8FAF50" opacity="0.5"/>
+  <circle cx="90"  cy="320" r="11" fill="#8FAF50" opacity="0.45"/>
+
+  <!-- Сквер справа -->
+  <rect x="430" y="60" width="100" height="80" rx="8" fill="#BDD490" opacity="0.5"/>
+  <circle cx="455" cy="85"  r="10" fill="#8FAF50" opacity="0.5"/>
+  <circle cx="490" cy="100" r="12" fill="#8FAF50" opacity="0.45"/>
+  <circle cx="520" cy="78"  r="9"  fill="#8FAF50" opacity="0.5"/>
+
+  <!-- ═══ ГЛАВНЫЕ ДОРОГИ ═══ -->
+  <!-- Электролитный проезд — горизонтальная, вверху -->
+  <rect x="0" y="70" width="600" height="36" fill="#F5F0E0" rx="0"/>
+  <rect x="0" y="70" width="600" height="36" fill="none" stroke="#C8B898" stroke-width="1"/>
+  <!-- Разделительная полоса -->
+  <line x1="0" y1="88" x2="600" y2="88" stroke="#C8B898" stroke-width="1" stroke-dasharray="20 10"/>
+  <!-- Подпись дороги -->
+  <text x="300" y="67" text-anchor="middle" font-size="11" font-weight="600" fill="#8B7355" letter-spacing="0.05em">ЭЛЕКТРОЛИТНЫЙ ПРОЕЗД</text>
+
+  <!-- Криворожская улица — диагональная внизу -->
+  <!-- Дорога как полоса под углом -->
+  <polygon points="0,380 600,420 600,450 0,410" fill="#F5F0E0"/>
+  <line x1="0" y1="395" x2="600" y2="435" stroke="#C8B898" stroke-width="1" stroke-dasharray="20 10"/>
+  <text x="480" y="470" text-anchor="middle" font-size="11" font-weight="600" fill="#8B7355" transform="rotate(-4,480,470)" letter-spacing="0.05em">КРИВОРОЖСКАЯ УЛ.</text>
+
+  <!-- Проезд вдоль домов — вертикальная посредине -->
+  <rect x="230" y="70" width="22" height="340" fill="#EDE8D8" rx="0"/>
+  <rect x="370" y="70" width="18" height="340" fill="#EDE8D8" rx="0"/>
+
+  <!-- Тропинка от метро к Вершинино -->
+  <path d="M 195 140 Q 175 200 155 270 Q 145 320 168 370" stroke="#C8B898" stroke-width="6" fill="none" stroke-linecap="round"/>
+
+  <!-- ═══ ЗДАНИЯ ═══ -->
+
+  <!-- Школа / ТЦ Олимп — большое здание сверху по центру -->
+  <rect x="240" y="100" width="130" height="100" rx="6" fill="#E8E0CE" stroke="#C4B090" stroke-width="1.5" filter="url(#shadow-sm)"/>
+  <text x="305" y="145" text-anchor="middle" font-size="10" fill="#7A6040" font-weight="600">Школа №1450</text>
+  <text x="305" y="160" text-anchor="middle" font-size="9"  fill="#7A6040">Олимп</text>
+
+  <!-- ЖК Вершинино — метка -->
+  <rect x="140" y="240" width="100" height="40" rx="5" fill="#E0D4BE" stroke="#C4B090" stroke-width="1" filter="url(#shadow-sm)"/>
+  <text x="190" y="258" text-anchor="middle" font-size="9"  fill="#7A6040">ЖК</text>
+  <text x="190" y="272" text-anchor="middle" font-size="10" fill="#7A6040" font-weight="600">Вершинино</text>
+
+  <!-- Блок домов 16к1 -->
+  <rect x="152" y="140" width="62" height="50" rx="4" fill="#E0D4BE" stroke="#C4B090" stroke-width="1" filter="url(#shadow-sm)"/>
+  <text x="183" y="168" text-anchor="middle" font-size="9" fill="#7A6040">16к1</text>
+
+  <!-- Дом 16к4 -->
+  <rect x="155" y="310" width="65" height="45" rx="4" fill="#E0D4BE" stroke="#C4B090" stroke-width="1" filter="url(#shadow-sm)"/>
+  <text x="188" y="337" text-anchor="middle" font-size="9" fill="#7A6040">16к4</text>
+
+  <!-- Дом 16к3 -->
+  <rect x="152" y="370" width="60" height="38" rx="4" fill="#E0D4BE" stroke="#C4B090" stroke-width="1" filter="url(#shadow-sm)"/>
+  <text x="182" y="392" text-anchor="middle" font-size="9" fill="#7A6040">16к3</text>
+
+  <!-- Блок справа -->
+  <rect x="395" y="110" width="80" height="60" rx="4" fill="#E0D4BE" stroke="#C4B090" stroke-width="1" filter="url(#shadow-sm)"/>
+  <text x="435" y="144" text-anchor="middle" font-size="9" fill="#7A6040">Твелв</text>
+
+  <!-- SmallTalk/здание рядом с кафе -->
+  <rect x="295" y="290" width="70" height="55" rx="4" fill="#E8E0CE" stroke="#C4B090" stroke-width="1" filter="url(#shadow-sm)"/>
+  <text x="330" y="322" text-anchor="middle" font-size="8.5" fill="#7A6040">Бизнес</text>
+  <text x="330" y="335" text-anchor="middle" font-size="8.5" fill="#7A6040">центр</text>
+
+  <!-- Здание 19а -->
+  <rect x="310" y="440" width="70" height="42" rx="4" fill="#E0D4BE" stroke="#C4B090" stroke-width="1" filter="url(#shadow-sm)"/>
+  <text x="345" y="465" text-anchor="middle" font-size="9" fill="#7A6040">19а</text>
+
+  <!-- ═══ ОРИЕНТИРЫ ═══ -->
+
+  <!-- МАГНИТ — зелёный значок -->
+  <g filter="url(#shadow)" transform="translate(245,348)">
+    <rect x="-28" y="-16" width="56" height="32" rx="8" fill="#E8343A"/>
+    <text x="0" y="5" text-anchor="middle" font-size="13" font-weight="700" fill="white">Магнит</text>
+  </g>
+
+  <!-- PSY Coffee — ориентир -->
+  <g transform="translate(340,60)">
+    <circle cx="0" cy="0" r="14" fill="#6B4F2A" opacity="0.85"/>
+    <text x="0" y="4" text-anchor="middle" font-size="9" fill="white">☕</text>
+    <rect x="-30" y="15" width="60" height="14" rx="4" fill="rgba(107,79,42,0.75)"/>
+    <text x="0" y="26" text-anchor="middle" font-size="8" fill="white">PSY Coffee</text>
+  </g>
+
+  <!-- ═══ МЕТРО НАГОРНАЯ ═══ -->
+  <g filter="url(#shadow)" transform="translate(195,115)">
+    <circle cx="0" cy="0" r="22" fill="#D72B3F"/>
+    <circle cx="0" cy="0" r="18" fill="white"/>
+    <text x="0" y="5" text-anchor="middle" font-size="15" font-weight="900" fill="#D72B3F">М</text>
+  </g>
+  <rect x="135" y="138" width="120" height="22" rx="6" fill="rgba(61,31,10,0.82)"/>
+  <text x="195" y="153" text-anchor="middle" font-size="11" font-weight="700" fill="white">Нагорная</text>
+
+  <!-- ═══ КАФ Е ВИ-ВЕР — звезда ═══ -->
+  <!-- Пульсирующий кружок (анимация через CSS в HTML) -->
+  <circle cx="290" cy="365" r="26" fill="#E85520" opacity="0.15" class="pulse-ring"/>
+  <circle cx="290" cy="365" r="20" fill="#E85520" filter="url(#shadow)"/>
+  <!-- Иконка домик/вилка -->
+  <text x="290" y="372" text-anchor="middle" font-size="16">🍲</text>
+
+  <!-- Бейдж кафе -->
+  <rect x="215" y="393" width="150" height="48" rx="10" fill="#3D1F0A" filter="url(#shadow)"/>
+  <rect x="215" y="393" width="150" height="48" rx="10" fill="none" stroke="#E85520" stroke-width="1.5"/>
+  <text x="290" y="413" text-anchor="middle" font-size="13" font-weight="900" fill="white" font-family="Georgia,serif">Ви-Вер</text>
+  <text x="290" y="430" text-anchor="middle" font-size="9"  fill="rgba(255,255,255,0.7)" letter-spacing="0.08em">КАФЕ-КУЛИНАРИЯ</text>
+
+  <!-- Адрес под бейджем -->
+  <rect x="220" y="445" width="140" height="18" rx="5" fill="rgba(61,31,10,0.55)"/>
+  <text x="290" y="457" text-anchor="middle" font-size="9" fill="rgba(255,255,255,0.85)">Электролитный пр-д, 16к7</text>
+
+  <!-- ═══ МАРШРУТ 1: ОТ МЕТРО НАГОРНАЯ ═══ -->
+  <!-- Путь: метро (195,115) → тропинка вниз → мимо ЖК → к Магниту → к кафе -->
+  <path
+    d="M 195 137
+       Q 195 175 200 210
+       Q 205 245 215 270
+       Q 225 295 245 320
+       Q 258 342 265 358
+       Q 275 365 290 365"
+    stroke="#E85520"
+    stroke-width="3.5"
+    stroke-dasharray="8 6"
+    fill="none"
+    stroke-linecap="round"
+    marker-end="url(#arrow-orange)"
+    opacity="0.9"
+  />
+
+  <!-- Метка маршрута от метро -->
+  <g transform="translate(215,230)">
+    <rect x="-38" y="-13" width="76" height="26" rx="7" fill="#E85520"/>
+    <text x="0" y="5" text-anchor="middle" font-size="10" font-weight="700" fill="white">5 мин 🚶</text>
+  </g>
+
+  <!-- ═══ МАРШРУТ 2: ОТ МАГНИТА ═══ -->
+  <!-- Магнит (245,348) → к кафе (290,365) — короткий путь -->
+  <path
+    d="M 255 348
+       Q 265 350 275 358
+       Q 282 363 290 365"
+    stroke="#E85520"
+    stroke-width="3.5"
+    stroke-dasharray="6 5"
+    fill="none"
+    stroke-linecap="round"
+    marker-end="url(#arrow-orange2)"
+    opacity="0.9"
+  />
+
+  <!-- Метка от Магнита -->
+  <g transform="translate(262,338)">
+    <rect x="-32" y="-13" width="64" height="24" rx="6" fill="#E85520"/>
+    <text x="0" y="4" text-anchor="middle" font-size="9" font-weight="700" fill="white">1 мин 🚶</text>
+  </g>
+
+  <!-- ═══ ЛЕГЕНДА ═══ -->
+  <rect x="14" y="466" width="196" height="48" rx="10" fill="rgba(61,31,10,0.82)" filter="url(#shadow-sm)"/>
+  <!-- Строка 1: маршрут от метро -->
+  <line x1="26" y1="481" x2="60" y2="481" stroke="#E85520" stroke-width="2.5" stroke-dasharray="5 4"/>
+  <circle cx="58" cy="481" r="3.5" fill="#E85520"/>
+  <text x="68" y="485" font-size="10" fill="white">От метро Нагорная — 5 мин</text>
+  <!-- Строка 2: от Магнита -->
+  <line x1="26" y1="499" x2="60" y2="499" stroke="#E85520" stroke-width="2.5" stroke-dasharray="5 4"/>
+  <circle cx="58" cy="499" r="3.5" fill="#E85520"/>
+  <text x="68" y="503" font-size="10" fill="white">От Магнита — 1 мин</text>
+
+  <!-- ═══ КОМПАС ═══ -->
+  <g transform="translate(560,490)">
+    <circle cx="0" cy="0" r="20" fill="rgba(255,255,255,0.85)" stroke="#C8B898" stroke-width="1"/>
+    <polygon points="0,-13 4,6 0,3 -4,6" fill="#D72B3F"/>
+    <polygon points="0,13 4,-6 0,-3 -4,-6" fill="#8B7355"/>
+    <text x="0" y="-15" text-anchor="middle" font-size="8" font-weight="700" fill="#D72B3F">С</text>
+    <text x="0"  y="23" text-anchor="middle" font-size="8" font-weight="700" fill="#8B7355">Ю</text>
+    <text x="-20" y="3" text-anchor="middle" font-size="8" fill="#8B7355">З</text>
+    <text x="20" y="3" text-anchor="middle" font-size="8" fill="#8B7355">В</text>
+  </g>
+
+</svg>

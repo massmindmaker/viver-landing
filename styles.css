@@ -1036,75 +1036,26 @@ img { max-width: 100%; display: block; }
   transform: translateY(-2px);
 }
 
-/* ── Yandex Map ── */
+/* ── Schematic Map ── */
 .map-wrapper {
-  position: relative;
   border-radius: var(--radius);
   overflow: hidden;
   box-shadow: var(--shadow-lg);
   border: 3px solid var(--beige-dark);
 }
 
-.yandex-map {
-  display: block;
+.schema-map {
+  background: #EDE0C4;
   width: 100%;
-  height: 380px;
-  border: none;
-  /* Sepia-brown filter to match warm design */
-  filter: sepia(30%) saturate(80%) hue-rotate(-5deg) brightness(0.92) contrast(1.05);
+  overflow: hidden;
 }
 
-/* Top badge overlay on the map */
-.map-frame-overlay {
-  position: absolute;
-  top: 14px;
-  left: 14px;
-  z-index: 10;
-  pointer-events: none;
-}
-
-.map-frame-badge {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  background: rgba(61,31,10,.92);
-  backdrop-filter: blur(8px);
-  color: var(--white);
-  padding: 10px 16px;
-  border-radius: var(--radius-sm);
-  box-shadow: 0 4px 16px rgba(0,0,0,.3);
-  border: 1px solid rgba(255,255,255,.1);
-}
-
-.map-frame-pin { font-size: 1.4rem; }
-
-.map-frame-badge strong {
-  display: block;
-  font-family: 'Playfair Display', serif;
-  font-size: .95rem;
-  font-weight: 700;
-  color: var(--white);
-}
-
-.map-frame-badge span {
-  font-size: .72rem;
-  color: rgba(255,255,255,.65);
-}
-
-/* Route SVG overlay — top-right corner */
-.map-route-overlay {
-  position: absolute;
-  top: 14px;
-  right: 14px;
-  z-index: 10;
-  pointer-events: none;
-  width: 140px;
-  filter: drop-shadow(0 2px 8px rgba(0,0,0,.35));
-}
-
-.map-route-svg {
+.schema-map__img {
   width: 100%;
   height: auto;
+  display: block;
+  /* Пульсация кафе через анимацию -->
+  /* SVG сам рендерит цвета */
 }
 
 /* Open button below map */
@@ -1331,8 +1282,8 @@ img { max-width: 100%; display: block; }
   .contacts { padding: 64px 0; }
   .contacts__inner { grid-template-columns: 1fr; gap: 36px; }
 
-  /* Map */
-  .yandex-map { height: 300px; }
+  /* Map — схема адаптируется автоматически (SVG) */
+  .schema-map__img { width: 100%; }
 
   /* Footer */
   .footer__inner {
@@ -1393,11 +1344,7 @@ img { max-width: 100%; display: block; }
   .contacts__social { flex-wrap: wrap; }
   .social-btn { flex: 1; justify-content: center; min-width: 120px; }
 
-  /* Map */
-  .yandex-map { height: 260px; }
-  .map-frame-badge { padding: 8px 12px; }
-  .map-frame-badge strong { font-size: .82rem; }
-  .map-frame-badge span   { font-size: .66rem; }
+  /* Map SVG auto-scales */
 
   /* Footer */
   .footer__links { gap: 16px; font-size: .82rem; }
@@ -1462,7 +1409,6 @@ img { max-width: 100%; display: block; }
   .feature-card strong { font-size: .85rem; }
   .feature-card span   { font-size: .75rem; }
 
-  .yandex-map { height: 220px; }
   .map-open-btn { font-size: .8rem; padding: 11px 14px; }
 }
 
